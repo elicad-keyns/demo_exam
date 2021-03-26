@@ -10,6 +10,7 @@ namespace demo_exam.Models
         public CollegeEntities()
             : base("name=CollegeEntities")
         {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CollegeEntities>());
         }
 
         public virtual DbSet<Course> Courses { get; set; }
