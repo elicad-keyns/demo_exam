@@ -29,21 +29,18 @@ namespace demo_exam.Models
         [DataMember]
         public double? gpa { get; set; }
 
-        [DataMember]
         public int? credits { get; set; }
 
-        [DataMember]
         public string major { get; set; }
 
-        [DataMember]
         public string schoolYear { get; set; }
 
-        [DataMember]
         public string email { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LogIn> LogIns { get; set; }
-
+        
+        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentCourse> StudentCourses { get; set; }
     }

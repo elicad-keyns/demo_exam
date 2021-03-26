@@ -5,11 +5,14 @@ namespace demo_exam.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Runtime.Serialization;
 
+    [DataContract]
     [Table("StudentCourse")]
     public partial class StudentCourse
     {
         [Key]
+        [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int s_course_id { get; set; }
 
@@ -21,6 +24,7 @@ namespace demo_exam.Models
 
         public int? credit { get; set; }
 
+        [DataMember]
         public string major { get; set; }
 
         public virtual Course Course { get; set; }
