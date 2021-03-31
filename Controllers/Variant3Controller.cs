@@ -10,27 +10,30 @@ namespace demo_exam.Controllers
     {
         CollegeEntities entities = new CollegeEntities();
 
-        public JsonResult<string[]> GetStudentsName()
+        [HttpGet]
+        public JsonResult<string[]> StudentsName()
         {
             return Json(entities.Students.Select(x => x.student_name).ToArray());
         }
 
-        public JsonResult<List<Course>> GetCourses(string property, string courseName)
+        [HttpGet]
+        public JsonResult<List<Course>> AllCourses(string nameStudent)
         {
-            return Json(GetListCourses(property)
+            return Json(ListCourses(nameStudent));
+        }
+
+        [HttpGet]
+        public JsonResult<List<Course>> Courses(string nameStudent, string courseName)
+        {
+            return Json(ListCourses(nameStudent)
                 .Where(x=>x.course1.Contains(courseName))
                 .ToList());
         }
 
-        public JsonResult<List<Course>> GetCourses(string property)
-        {
-            return Json(GetListCourses(property));
-        }
-
-        private List<Course> GetListCourses(string property)
+        private List<Course> ListCourses(string nameStudent)
         {
             return entities.Students
-                .First(x => x.student_name == property).StudentCourses
+                .First(x => x.student_name == nameStudent).StudentCourses
                 .Select(x => x.Course)
                 .ToList();
         }

@@ -12,19 +12,22 @@ namespace demo_exam.Controllers
         CollegeEntities entities = new CollegeEntities();
 
         // GET: api/Variant2/GetCourses
-        public JsonResult<List<Course>> GetCourses()
+        [HttpGet]
+        public JsonResult<List<Course>> AllCourses()
         {
             return Json(entities.Courses.Include(x => x.Faculty).ToList());
         }
 
         // GET: api/Variant2/GetCourses/{courseName}
-        public JsonResult<List<Course>> GetCourses(string property)
+        [HttpGet]
+        public JsonResult<List<Course>> Course(string nameCourse)
         {
-            return Json(entities.Courses.Include(x => x.Faculty).Where(x=>x.course1.Contains(property)).ToList());
+            return Json(entities.Courses.Include(x => x.Faculty).Where(x=>x.course1.Contains(nameCourse)).ToList());
         }
 
         // GET: api/Variant2/GetTitleCourses
-        public JsonResult<string[]> GetTitleCourses()
+        [HttpGet]
+        public JsonResult<string[]> TitleCourses()
         {
             return Json(entities.Courses.Select(x => x.course1).ToArray());
         }

@@ -25,8 +25,7 @@ namespace demo_exam
             //);
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{property}",
-                defaults:new { property = RouteParameter.Optional });
+                routeTemplate: "api/{controller}/{action}" );
         }
     }
 }
