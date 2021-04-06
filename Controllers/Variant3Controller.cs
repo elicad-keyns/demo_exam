@@ -10,57 +10,32 @@ namespace demo_exam.Controllers
     {
         CollegeEntities entities = new CollegeEntities();
 
-        public JsonResult<string[]> GetStudentsName()
+        [HttpGet]
+        public JsonResult<string[]> NameStudents()
         {
             return Json(entities.Students.Select(x => x.student_name).ToArray());
         }
 
-        public JsonResult<List<Course>> GetCourses(string property, string courseName)
+        [HttpGet]
+        public JsonResult<List<Course>> Courses(string nameStudent, string nameCourse)
         {
-            return Json(GetListCourses(property)
-                .Where(x=>x.course1.Contains(courseName))
+            return Json(ListCourses(nameStudent)
+                .Where(x=>x.course1.Contains(nameCourse))
                 .ToList());
         }
 
-        public JsonResult<List<Course>> GetCourses(string property)
+        [HttpGet]
+        public JsonResult<List<Course>> Courses(string nameCourse)
         {
-            return Json(GetListCourses(property));
+            return Json(ListCourses(nameCourse));
         }
 
-        private List<Course> GetListCourses(string property)
+        private List<Course> ListCourses(string name)
         {
             return entities.Students
-                .First(x => x.student_name == property).StudentCourses
+                .First(x => x.student_name.Contains(name)).StudentCourses
                 .Select(x => x.Course)
                 .ToList();
         }
-
-        //// GET: ForTeachers/GetCourses
-        //public JsonResult<List<Course>> GetCourses()
-        //{
-        //    return Json(entities.Courses.ToList());
-        //}
-
-        //// GET: ForTeachers/GetCourses
-        //public JsonResult<List<Student>> GetStudent(string id)
-        //{
-        //    return Json(GetStudents(id));
-        //}
-
-        //public double GetAvgScore(string id)
-        //{
-        //    return GetStudents(id).Average(x=>(double)x.gpa);
-        //}
-
-        //private List<Student> GetStudents(string idCourses)
-        //{
-        //    var item = entities.StudentCourses
-        //        .Where(x => x.course_id == idCourses)
-        //        .Select(x => x.student_id);
-        //    return entities.Students
-        //        .Where(x => item
-        //        .Contains(x.student_id))
-        //        .ToList();
-        //}
     }
 }

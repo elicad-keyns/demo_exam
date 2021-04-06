@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище demo_examModel" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "def.demo_exam.information_about_course" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="information_about_course">
+    <Key>
+      <PropertyRef Name="faculty_id" />
+    </Key>
+    <Property Name="course" Type="varchar" MaxLength="30" />
+    <Property Name="faculty_id" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="classroom" Type="varchar" MaxLength="100" />
+    <Property Name="schedule" Type="varchar" MaxLength="30" />
+    <Property Name="faculty_name" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "def.demo_exam.information_about_student" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="information_about_student">
+          <Property Name="student_name" Type="varchar" MaxLength="50" />
+          <Property Name="gpa" Type="double" />
+          <Property Name="major" Type="varchar" MaxLength="30" />
+          <Property Name="schoolYear" Type="varchar" MaxLength="30" />
+          <Property Name="course" Type="varchar" MaxLength="30" />
+          <Property Name="major_course" Type="varchar" MaxLength="5" />
+        </EntityType>-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "def.demo_exam.information_about_student_and_cource" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="information_about_student_and_cource">
+          <Property Name="student_name" Type="varchar" MaxLength="50" />
+          <Property Name="course" Type="varchar" MaxLength="30" />
+          <Property Name="major" Type="varchar" MaxLength="30" />
+          <Property Name="enrollment" Type="int" />
+        </EntityType>-->
+  <EntityContainer Name="Хранилище demo_examModelContainer">
+    <EntitySet Name="information_about_course" EntityType="Self.information_about_course" store:Type="Views" store:Schema="demo_exam">
+      <DefiningQuery>SELECT
+`information_about_course`.`course`, 
+`information_about_course`.`faculty_id`, 
+`information_about_course`.`classroom`, 
+`information_about_course`.`schedule`, 
+`information_about_course`.`faculty_name`
+FROM `information_about_course` AS `information_about_course`</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,4 +1,4 @@
-﻿using demo_exam.Models;
+﻿using demo_exam.Models.Mysql;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,50 +12,35 @@ namespace demo_exam.Controllers
 {
     public class Variant1Controller : ApiController
     {
-        CollegeEntities entities = new CollegeEntities();
+        MySQLEntity entities = new MySQLEntity();
 
-        // GET: api/Variant1/GetStudents
-        public JsonResult<List<Student>> GetStudents()
+        [HttpGet]
+        public JsonResult<List<InformationAboutStudent>> Students()
         {
-            return Json(entities.Students.Include(x => x.StudentCourses.Select(c => c.Course)).ToList());
+            //var studentEntities = entities.Students
+            //    .Include(x => x.StudentCourses
+            //.Select(y=>y.Course))
+            //    .ToList();
+            //          entities.Students.Include(x => x.StudentCourses.Select(c => c.Course)).ToList()
+            return Json(entities.InformationAboutStudents.ToList());
         }
 
-        // GET: api/Variant1/GetStudents/{studentName}
-        public JsonResult<List<Student>> GetStudents(string property)
+        [HttpGet]
+        public JsonResult<List<InformationAboutStudent>> Students(string name)
         {
-            return Json(entities.Students.Include(x => x.StudentCourses.Select(c => c.Course)).Where(x=>x.student_name.Contains(property)).ToList());
+            return Json(entities.InformationAboutStudents.Where(x=>x.course.Contains(name))
+                .Select(x=>new InformationAboutStudent
+                {
+                    
+                }).ToList());
+            //return Json(entities.Students.Include(x => x.StudentCourses.Select(c => c.Course)).Where(x=>x.student_name.Contains(name)).ToList());
         }
 
-        // GET: api/Variant1/GetTitleCourses
-        public JsonResult<string[]> GetTitleCourses()
+        [HttpGet]
+        public JsonResult<string[]> TitleCourses()
         {
-            return Json(entities.Courses.Select(x => x.course1).ToArray());
+            return Json(entities.InformationAboutStudents.Select(x=>x.course).Distinct().ToArray());
+            //return Json(entities.Courses.Select(x => x.course1).Distinct().ToArray());
         }
-
-        // GET api/ForStudent/GetStudents
-        //public JsonResult<List<Student>> GetStudents()
-        //{
-        //    return Json(entities.Students.ToList());
-        //}
-        //// Get api/Student/GetStudent
-        //public JsonResult<List<Course>> GetStudent(string id)
-        //{
-        //    return Json(GetCourses(id));
-        //}
-        ////Get api/Student/GetTotalTime
-        //public int GetTotalTime(string id)
-        //{
-        //    int totalTime = GetCourses(id).Sum(x=>(int)x.enrollment);
-        //    return totalTime;
-        //}
-
-        ////А это получить нельзя)
-        //private List<Course> GetCourses(string id)
-        //{
-        //    var item = entities.StudentCourses
-        //        .Where(x => x.student_id == id)
-        //        .Select(x=>x.course_id.ToString());
-        //    return entities.Courses.Where(x => item.Contains(x.course_id)).ToList();
-        //}
     }
 }

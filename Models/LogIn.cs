@@ -6,7 +6,7 @@ namespace demo_exam.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("LogIn")]
+    [Table("login")]
     public partial class LogIn
     {
         [Key]

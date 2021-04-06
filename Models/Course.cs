@@ -8,7 +8,7 @@ namespace demo_exam.Models
     using System.Runtime.Serialization;
 
     [DataContract]
-    [Table("Course")]
+    [Table("course")]
     public partial class Course
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +25,6 @@ namespace demo_exam.Models
         [Column("course")]
         public string course1 { get; set; }
         
-        [DataMember]
         public double? credit { get; set; }
         
         [DataMember]

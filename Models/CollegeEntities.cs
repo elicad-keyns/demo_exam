@@ -8,7 +8,7 @@ namespace demo_exam.Models
     public partial class CollegeEntities : DbContext
     {
         public CollegeEntities()
-            : base("name=CollegeEntities")
+            : base("name=MySqlCollegeDB")
         {
         }
 

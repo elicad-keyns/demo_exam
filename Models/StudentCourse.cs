@@ -8,11 +8,10 @@ namespace demo_exam.Models
     using System.Runtime.Serialization;
 
     [DataContract]
-    [Table("StudentCourse")]
+    [Table("studentcourse")]
     public partial class StudentCourse
     {
         [Key]
-        [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int s_course_id { get; set; }
 
@@ -26,7 +25,8 @@ namespace demo_exam.Models
 
         [DataMember]
         public string major { get; set; }
-
+        
+        [DataMember]
         public virtual Course Course { get; set; }
 
         public virtual Student Student { get; set; }

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="demo_examModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="information_about_course">
+    <Key>
+      <PropertyRef Name="faculty_id" />
+    </Key>
+    <Property Name="course" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="faculty_id" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="classroom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="schedule" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="faculty_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="information_about_course" EntityType="Self.information_about_course" />
+  </EntityContainer>
+</Schema>
