@@ -192,15 +192,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CollegeEntities.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\Faculty.cs" />
-    <Compile Include="Models\LogIn.cs" />
-    <Compile Include="Models\Mysql\InformationAboutCourse.cs" />
-    <Compile Include="Models\Mysql\InformationAboutStudent.cs" />
-    <Compile Include="Models\Mysql\MySQLEntity.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\StudentCourse.cs" />
+    <Compile Include="Models\Class\CourseClass\Course.cs" />
+    <Compile Include="Models\Class\CourseClass\CourseVariant2.cs" />
+    <Compile Include="Models\Class\CourseClass\CourseVariant3.cs" />
+    <Compile Include="Models\Class\StudentClass\Student.cs" />
+    <Compile Include="Models\Class\StudentCourse.cs" />
+    <Compile Include="Models\Class\StudentClass\StudentVariant1.cs" />
+    <Compile Include="Models\DataModel\CollegeEntities.cs" />
+    <Compile Include="Models\DataModel\Course.cs" />
+    <Compile Include="Models\DataModel\Faculty.cs" />
+    <Compile Include="Models\DataModel\LogIn.cs" />
+    <Compile Include="Models\DataModel\Student.cs" />
+    <Compile Include="Models\DataModel\StudentCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

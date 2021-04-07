@@ -1,10 +1,7 @@
-﻿using demo_exam.Models.Mysql;
-using System;
+﻿using demo_exam.Models.Class.CourseClass;
+using demo_exam.Models.Class.StudentClass;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Results;
 
@@ -12,35 +9,37 @@ namespace demo_exam.Controllers
 {
     public class Variant1Controller : ApiController
     {
-        MySQLEntity entities = new MySQLEntity();
-
+        Models.DataModel.CollegeEntities entities = Models.DataModel.CollegeEntities.GetCollegeEntities();
         [HttpGet]
-        public JsonResult<List<InformationAboutStudent>> Students()
+        public JsonResult<List<Student<Course>>> Students()
         {
-            //var studentEntities = entities.Students
-            //    .Include(x => x.StudentCourses
-            //.Select(y=>y.Course))
-            //    .ToList();
-            //          entities.Students.Include(x => x.StudentCourses.Select(c => c.Course)).ToList()
-            return Json(entities.InformationAboutStudents.ToList());
+            var studentCourse = entities.Students.Local.Select(x=> (Student<Course>)new StudentVariant1(x))
+                .ToList();
+            return Json(studentCourse);
         }
 
         [HttpGet]
-        public JsonResult<List<InformationAboutStudent>> Students(string name)
+        public JsonResult<List<Student<Course>>> Students(string name)
         {
-            return Json(entities.InformationAboutStudents.Where(x=>x.course.Contains(name))
-                .Select(x=>new InformationAboutStudent
-                {
-                    
-                }).ToList());
-            //return Json(entities.Students.Include(x => x.StudentCourses.Select(c => c.Course)).Where(x=>x.student_name.Contains(name)).ToList());
+            var studentCourse = entities.Students.Local.Select(x => (Student<Course>)new StudentVariant1(x))
+                .ToList();
+            return Json(studentCourse.Where(x=>x.Name.Contains(name)).ToList());
+        }
+
+        [HttpGet]
+        public JsonResult<List<Student<Course>>> Students(string name, string courseName)
+        {
+            var studentCourse = entities.Students.Local.Select(x => (Student<Course>)new StudentVariant1(x))
+                .ToList();
+            return Json(studentCourse.Where(x => x.Name.Contains(name) && x.StudentCourses.Select(c=>c.Course.CourseName).Contains(courseName)).ToList());
         }
 
         [HttpGet]
         public JsonResult<string[]> TitleCourses()
         {
-            return Json(entities.InformationAboutStudents.Select(x=>x.course).Distinct().ToArray());
-            //return Json(entities.Courses.Select(x => x.course1).Distinct().ToArray());
+            return Json(entities.Courses.Local.Select(x => x.course1)
+                .Distinct()
+                .ToArray());
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace demo_exam.Models
+namespace demo_exam.Models.DataModel
 {
     using System;
     using System.Collections.Generic;
@@ -26,7 +26,6 @@ namespace demo_exam.Models
         [DataMember]
         public string major { get; set; }
         
-        [DataMember]
         public virtual Course Course { get; set; }
 
         public virtual Student Student { get; set; }

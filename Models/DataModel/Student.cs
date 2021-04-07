@@ -1,4 +1,4 @@
-namespace demo_exam.Models
+namespace demo_exam.Models.DataModel
 {
     using System;
     using System.Collections.Generic;
@@ -26,14 +26,14 @@ namespace demo_exam.Models
         [StringLength(100)]
         public string student_name { get; set; }
         
-        [DataMember]
+        //[DataMember] - это надо в другом (1)
         public double? gpa { get; set; }
 
         public int? credits { get; set; }
-
+        //[DataMember] - это надо в другом (1)
         public string major { get; set; }
 
-        [DataMember]
+        //[DataMember] - это надо в другом (1)
         public string schoolYear { get; set; }
 
         public string email { get; set; }
@@ -41,7 +41,6 @@ namespace demo_exam.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LogIn> LogIns { get; set; }
         
-        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentCourse> StudentCourses { get; set; }
     }

@@ -1,4 +1,5 @@
 ﻿using demo_exam.Models;
+using demo_exam.Models.Class.CourseClass;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,24 +10,41 @@ namespace demo_exam.Controllers
 {
     public class Variant2Controller : ApiController
     {
-        CollegeEntities entities = new CollegeEntities();
+        Models.DataModel.CollegeEntities entities = Models.DataModel.CollegeEntities.GetCollegeEntities();
 
         [HttpGet]
         public JsonResult<List<Course>> Courses()
         {
-            return Json(entities.Courses.Include(x => x.Faculty).ToList());
+            var courseEntities = entities.Courses.Local.Select(x => (Course)new CourseVariant2(x))
+                .ToList();
+            return Json(courseEntities);
         }
 
         [HttpGet]
         public JsonResult<List<Course>> Courses(string nameCourses)
         {
-            return Json(entities.Courses.Include(x => x.Faculty).Where(x=>x.course1.Contains(nameCourses)).ToList());
+            var courseEntities = entities.Courses.Local.Select(x => (Course)new CourseVariant2(x))
+                .ToList();
+            return Json(courseEntities.Where(x => x.CourseName.Contains(nameCourses))
+                .ToList());
+        }
+
+        [HttpGet]
+        public JsonResult<List<Course>> Courses(string nameCourses, string classroom)
+        {
+            var courseEntities = entities.Courses.Local.Select(x => new CourseVariant2(x))
+                .ToList();
+            return Json(courseEntities.Where(x => x.CourseName.Contains(nameCourses) && x.Classroom == classroom)
+                .Select(x=> (Course)x)
+                .ToList());
         }
 
         [HttpGet]
         public JsonResult<string[]> TitleCourses()
         {
-            return Json(entities.Courses.Select(x => x.course1).Distinct().ToArray());
+            return Json(entities.Courses.Local.Select(x => x.course1)
+                .Distinct()
+                .ToArray());
         }
     }
 }

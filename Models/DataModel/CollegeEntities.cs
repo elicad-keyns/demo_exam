@@ -3,13 +3,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace demo_exam.Models
+namespace demo_exam.Models.DataModel
 {
     public partial class CollegeEntities : DbContext
     {
-        public CollegeEntities()
+        private CollegeEntities()
             : base("name=MySqlCollegeDB")
         {
+        }
+
+        private static CollegeEntities GetEntities;
+        public static CollegeEntities GetCollegeEntities()
+        {
+            if(GetEntities == null)
+            {
+                GetEntities = new CollegeEntities();
+                GetEntities.Students.Include(s => s.StudentCourses)
+                    .Include(sc => sc.StudentCourses.Select(c => c.Course))
+                    .Include(x => x.StudentCourses.Select(f => f.Course.Faculty)).Load();
+            }
+            return GetEntities;
         }
 
         public virtual DbSet<Course> Courses { get; set; }

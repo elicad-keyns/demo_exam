@@ -1,11 +1,13 @@
-namespace demo_exam.Models
+namespace demo_exam.Models.DataModel
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Runtime.Serialization;
 
+    [DataContract]
     [Table("faculty")]
     public partial class Faculty
     {
@@ -20,6 +22,7 @@ namespace demo_exam.Models
         [StringLength(50)]
         public string faculty_id { get; set; }
 
+        [DataMember]
         [StringLength(50)]
         public string faculty_name { get; set; }
 
