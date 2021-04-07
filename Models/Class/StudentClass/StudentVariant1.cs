@@ -1,6 +1,8 @@
-﻿namespace demo_exam.Models.Class.StudentClass
+﻿using demo_exam.Models.Class.CourseClass;
+
+namespace demo_exam.Models.Class.StudentClass
 {
-    public class StudentVariant1 : Student<CourseClass.Course>
+    public class StudentVariant1 : Student<Course>
     {
         public StudentVariant1(DataModel.Student student) : base(student)
         {

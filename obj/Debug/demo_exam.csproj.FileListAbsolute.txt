@@ -308,3 +308,14 @@ C:\Users\a.mardamshina\Source\Repos\LittleDeveloper-CSharp\demo_exam\obj\Debug\d
 C:\Users\a.mardamshina\Source\Repos\LittleDeveloper-CSharp\demo_exam\obj\Debug\demo_exam.csproj.CopyComplete
 C:\Users\a.mardamshina\Source\Repos\LittleDeveloper-CSharp\demo_exam\obj\Debug\demo_exam.dll
 C:\Users\a.mardamshina\Source\Repos\LittleDeveloper-CSharp\demo_exam\obj\Debug\demo_exam.pdb
+C:\Users\Popka\source\repos\demo_exam\bin\BouncyCastle.Crypto.dll
+C:\Users\Popka\source\repos\demo_exam\bin\Google.Protobuf.dll
+C:\Users\Popka\source\repos\demo_exam\bin\MySql.Data.dll
+C:\Users\Popka\source\repos\demo_exam\bin\MySql.Data.EntityFramework.dll
+C:\Users\Popka\source\repos\demo_exam\bin\Renci.SshNet.dll
+C:\Users\Popka\source\repos\demo_exam\bin\Ubiety.Dns.Core.dll
+C:\Users\Popka\source\repos\demo_exam\bin\Google.Protobuf.xml
+C:\Users\Popka\source\repos\demo_exam\bin\MySql.Data.xml
+C:\Users\Popka\source\repos\demo_exam\bin\MySql.Data.EntityFramework.xml
+C:\Users\Popka\source\repos\demo_exam\bin\Renci.SshNet.xml
+C:\Users\Popka\source\repos\demo_exam\bin\ru\EntityFramework.SqlServer.resources.dll

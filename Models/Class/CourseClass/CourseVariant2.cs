@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using demo_exam.Models.DataModel;
-
-namespace demo_exam.Models.Class.CourseClass
+﻿namespace demo_exam.Models.Class.CourseClass
 {
     public class CourseVariant2 : Course
     {

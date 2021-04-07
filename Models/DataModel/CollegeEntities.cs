@@ -8,7 +8,7 @@ namespace demo_exam.Models.DataModel
     public partial class CollegeEntities : DbContext
     {
         private CollegeEntities()
-            : base("name=MySqlCollegeDB")
+            : base("name=CollegeEntities")
         {
         }
 
