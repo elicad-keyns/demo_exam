@@ -35,6 +35,15 @@ namespace demo_exam.Controllers
         }
 
         [HttpGet]
+        [Route("Variant1/Students")]
+        public JsonResult<List<Student<Course>>> Student(string courseName)
+        {
+            var studentCourse = entities.Students.Local.Select(x => (Student<Course>)new StudentVariant1(x))
+                .ToList();
+            return Json(studentCourse.Where(x => x.StudentCourses.Select(c => c.Course.CourseName).Contains(courseName)).ToList());
+        }
+
+        [HttpGet]
         public JsonResult<string[]> TitleCourses()
         {
             return Json(entities.Courses.Local.Select(x => x.course1)

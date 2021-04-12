@@ -1,6 +1,5 @@
 ﻿using demo_exam.Models.Class;
 using demo_exam.Models.Class.CourseClass;
-using demo_exam.Models.Class.StudentClass;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -15,7 +14,8 @@ namespace demo_exam.Controllers
         [HttpGet]
         public JsonResult<string[]> NameStudents()
         {
-            return Json(entities.Students.Local.Select(x => x.student_name).ToArray());
+            return Json(entities.Students.Local.Select(x => x.student_name)
+                .ToArray());
         }
 
         [HttpGet]
@@ -27,7 +27,8 @@ namespace demo_exam.Controllers
         [HttpGet]
         public JsonResult<List<StudentCourse<CourseVariant3>>> Courses(string nameStudent, string nameCourse)
         {
-            var courseEntities = ListStudentCourse(nameStudent).Where(x => x.Course.CourseName.Contains(nameCourse))
+            var courseEntities = ListStudentCourse(nameStudent).Where(x => x.Course.CourseName
+            .Contains(nameCourse))
                 .ToList();
             return Json(courseEntities);
         }
@@ -40,16 +41,24 @@ namespace demo_exam.Controllers
             return Json(courseEntities);
         }
 
+        [HttpGet]
+        public JsonResult<List<StudentCourse<CourseVariant3>>> Course(string nameStudent, string speciality)
+        {
+            var courseEntities = ListStudentCourse(nameStudent)
+                .Where(x => x.Major.Contains(speciality))
+                .ToList();
+            return Json(courseEntities);
+        }
+
         private List<StudentCourse<CourseVariant3>> ListStudentCourse(string name)
         {
-            var student = entities.Students.Local.First(x => x.student_name.Contains(name));
-            var studentCourse = student.StudentCourses.Select(x => new StudentCourse<CourseVariant3>(x)).ToList();
-            //var courseEntities = entities.Students.Local.Select(x => new Student(x)).Select(x => x.StudentCourses.Where(s => s.Courses.CourseName.Contains(name))).ToList();
-            return studentCourse;
-            //return entities.Students
-            //    .First(x => x.student_name.Contains(name)).StudentCourses
-            //    .Select(x => x.Course)
-            //    .ToList();
+            var student = entities.Students.Local.FirstOrDefault(x => x.student_name.Contains(name));
+            if (student != null)
+            {
+                var studentCourse = student.StudentCourses.Select(x => new StudentCourse<CourseVariant3>(x)).ToList();
+                return studentCourse;
+            }
+            return null;
         }
     }
 }

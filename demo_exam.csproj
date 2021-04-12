@@ -260,8 +260,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="model\" />
-    <Folder Include="Views\ForSecretary\" />
-    <Folder Include="Views\ForTeachers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
